@@ -66,7 +66,9 @@ public class WordDictionary : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
-            InitializeLexicon("Assets/Resources/words.txt");
+            var wordsFilePath = Path.Combine(Application.streamingAssetsPath, "words.txt");
+
+            InitializeLexicon(wordsFilePath);
         }
         else
         {

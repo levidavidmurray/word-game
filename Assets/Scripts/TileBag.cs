@@ -23,6 +23,8 @@ public class TileBag : MonoBehaviour
 
     public static char[] Alphabet = new char[26] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
+    public static char[] Vowels = new char[5] { 'A', 'E', 'I', 'O', 'U' };
+
     private static TileBag _instance;
     private Dictionary<char, int> _bag;
 
@@ -40,13 +42,20 @@ public class TileBag : MonoBehaviour
         }
     }
 
-    public static char[] GetRandomLetters(int letterCount) {
+    public static char[] GetRandomLetters(int letterCount, int forcedVowelCount = 0) {
         char[] letters = new char[letterCount];
         // TODO: Ensure there are enough letters available
+
+        var vowelCount = 0;
         while (letterCount > 0) {
             var letter = Alphabet[Random.Range(0, 25)];
             print($"instance: {_instance}, bag: {_instance._bag}");
             if (_instance._bag[letter] <= 0) continue;
+
+            if (forcedVowelCount > 0 && vowelCount != forcedVowelCount) {
+                if (!Vowels.Contains(letter)) continue;
+                vowelCount++;
+            }
             letters[letters.Length - letterCount] = letter;
             _instance._bag[letter]--;
             letterCount--;

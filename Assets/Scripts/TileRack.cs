@@ -42,12 +42,18 @@ public class TileRack : MonoBehaviour
     }
 
     public void GenerateTiles() {
+        var vowelCount = 2;
         for (int i = 0; i < _spaces.Length; i++) {
             var space = _spaces[i];
             // Don't generate tiles for rack spaces that have tiles
             if (space.tile != null) continue;
 
-            char[] letters = TileBag.GetRandomLetters(1);
+            var iterVowelCount = 0;
+            if (vowelCount > 0) {
+                iterVowelCount = 1;
+                vowelCount--;
+            }
+            char[] letters = TileBag.GetRandomLetters(1, iterVowelCount);
 
             var tileObj = Instantiate(tilePrefab);
             var tile = tileObj.GetComponent<Tile>();
