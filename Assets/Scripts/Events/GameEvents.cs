@@ -25,4 +25,5 @@ public class GameEvents : MonoBehaviour
             OnTileActivated(tile);
         }
     }
+
 }

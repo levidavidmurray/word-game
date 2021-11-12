@@ -10,8 +10,9 @@ public class TileSpace : MonoBehaviour
     public bool isLocked = false;
     public bool isPlayable = false;
     public bool isCenterTile = false;
-    public bool isBoardSpace = false;
     public Sprite centerTileSprite;
+    public bool isRackSpace = false;
+    public int rackIndex = -1;
 
     private SpriteRenderer _sr;
 
@@ -54,6 +55,12 @@ public class TileSpace : MonoBehaviour
 
     public bool PlacedThisRound() {
         return HasTile() && !isLocked;
+    }
+
+    public bool IsBoardSpace {
+        get {
+            return !isRackSpace;
+        }
     }
 
 }

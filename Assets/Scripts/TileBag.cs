@@ -49,7 +49,6 @@ public class TileBag : MonoBehaviour
         var vowelCount = 0;
         while (letterCount > 0) {
             var letter = Alphabet[Random.Range(0, 25)];
-            print($"instance: {_instance}, bag: {_instance._bag}");
             if (_instance._bag[letter] <= 0) continue;
 
             if (forcedVowelCount > 0 && vowelCount != forcedVowelCount) {
